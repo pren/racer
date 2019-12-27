@@ -1,0 +1,38 @@
+
+                     --------------------------------------
+                     TINKER Notes for GNU gfortran on Linux
+                     --------------------------------------
+
+         This subdirectory contains a set of script files that can be
+         used to build the TINKER program package on a Linux system
+         using the GNU gfortran Fortran compiler.
+
+         Please note that by default most Linux distributions limit
+         stacksize and datasize for processes, as can be checked via
+         the csh limit command or similar. Large TINKER executables
+         will need these values increased to avoid failure at startup.
+
+Update compilation instructions (03/04/19)
+
+Note, make sure lines 84-85 are commented out of initial.f before compiling RACER source code with gcc
+
+Generate library files libfftw3.a  libfftw3.la  libfftw3_threads.a  libfftw3_threads.la
+in fftw/lib folder
+
+$ cd Tinker/fftw/
+$ ./configure --prefix=$PWD --enable-threads
+$ make -j 6
+$ make install
+
+
+Copy compile.make, library.make, link.make from this folder to source folder
+$ cd ../source
+$ cp ../linux/gfortran/*.make .
+ 
+execute the following commands
+
+$./compile.make
+$./library.make
+$./link.make 
+
+
